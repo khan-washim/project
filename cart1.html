@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shopping Cart</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body { background-color: #f8f9fa; }
+
+    /* Step Tracker */
+    .step-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 50px auto 80px;
+      width: 60%;
+      max-width: 600px;
+      position: relative;
+    }
+
+    /* Connector line */
+    .step-container::before {
+      content: "";
+      position: absolute;
+      top: 20px; /* align with circle center */
+      left: 20px;
+      right: 20px;
+      height: 4px;
+      background: #ddd;
+      z-index: 0;
+    }
+
+    .step {
+      position: relative;
+      z-index: 1;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #333;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .step.active {
+      background: #3b3b98;
+      color: #fff;
+    }
+
+    .step-label {
+      position: absolute;
+      top: 55px;
+      font-size: 14px;
+      color: #555;
+      text-align: center;
+      width: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* Cart */
+    .cart-title { color: #3b3b98; font-weight: bold; }
+    .cart-table th, .cart-table td { vertical-align: middle; }
+    .btn-qty {
+      width: 35px;
+      height: 35px;
+      padding: 0;
+      font-size: 18px;
+    }
+    .remove-btn {
+      color: red;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    .card {
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+  </style>
+</head>
+<body class="p-4">
+
+<!-- Step Tracker -->
+<div class="step-container">
+  <div class="step active" data-step="1">1<div class="step-label">Cart</div></div>
+  <div class="step" data-step="2">2<div class="step-label">Checkout</div></div>
+  <div class="step" data-step="3">3<div class="step-label">Payment</div></div>
+</div>
+
+<div class="container">
+  <div class="row g-4">
+    <!-- Cart Items -->
+    <div class="col-lg-8">
+      <div class="card p-3">
+        <div class="d-flex justify-content-between align-items-center">
+          <h5 class="cart-title">Cart</h5>
+          <small class="text-muted">Review your cart</small>
+        </div>
+        <hr>
+        <table class="table cart-table">
+          <thead class="text-muted">
+            <tr>
+              <th></th>
+              <th>Product</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Subtotal</th>
+            </tr>
+          </thead>
+          <tbody id="cart-body">
+            <!-- Item Row -->
+            <tr data-price="1999">
+              <td><span class="remove-btn">&times;</span></td>
+              <td><img src="https://via.placeholder.com/50" class="me-2"> The Cream Full Jacket</td>
+              <td>$1,999</td>
+              <td>
+                <div class="input-group input-group-sm">
+                  <button class="btn btn-outline-secondary btn-qty minus">-</button>
+                  <input type="text" class="form-control text-center qty" value="1" readonly>
+                  <button class="btn btn-outline-secondary btn-qty plus">+</button>
+                </div>
+              </td>
+              <td class="subtotal">$1,999</td>
+            </tr>
+            <tr data-price="1999">
+              <td><span class="remove-btn">&times;</span></td>
+              <td><img src="https://via.placeholder.com/50" class="me-2"> The Cream Full Jacket</td>
+              <td>$1,999</td>
+              <td>
+                <div class="input-group input-group-sm">
+                  <button class="btn btn-outline-secondary btn-qty minus">-</button>
+                  <input type="text" class="form-control text-center qty" value="1" readonly>
+                  <button class="btn btn-outline-secondary btn-qty plus">+</button>
+                </div>
+              </td>
+              <td class="subtotal">$1,999</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="d-flex justify-content-between">
+          <strong class="text-danger" style="cursor:pointer;">X Clear cart</strong>
+          <div>
+            <span>Total item: <span id="total-items">2</span></span>
+            &nbsp; | &nbsp;
+            <span>Total quantity: <span id="total-qty">2</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cart Total -->
+    <div class="col-lg-4">
+      <div class="card p-3">
+        <h5 class="cart-title">Cart Total</h5>
+        <hr>
+        <div class="d-flex justify-content-between"><span>Subtotal</span><span id="subtotal">$3,998</span></div>
+        <div class="d-flex justify-content-between"><span>Shipping</span><span id="shipping">$100</span></div>
+        <div class="d-flex justify-content-between text-muted"><span>Coupon discount</span><span>$0</span></div>
+        <hr>
+        <div class="d-flex justify-content-between fw-bold"><span>Total Payable</span><span id="total-payable">$4,098</span></div>
+        <button class="btn btn-primary w-100 mt-3">Process the checkout</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Step tracker click handling
+  const steps = document.querySelectorAll('.step');
+  steps.forEach(step => {
+    step.addEventListener('click', () => {
+      steps.forEach(s => s.classList.remove('active'));
+      step.classList.add('active');
+    });
+  });
+
+  // Cart functionality
+  const cartBody = document.getElementById('cart-body');
+  const totalItemsEl = document.getElementById('total-items');
+  const totalQtyEl = document.getElementById('total-qty');
+  const subtotalEl = document.getElementById('subtotal');
+  const totalPayableEl = document.getElementById('total-payable');
+  const shippingCost = 100;
+
+  function updateCartTotals() {
+    let totalItems = cartBody.querySelectorAll('tr').length;
+    let totalQty = 0;
+    let subtotal = 0;
+
+    cartBody.querySelectorAll('tr').forEach(row => {
+      let price = parseFloat(row.dataset.price);
+      let qty = parseInt(row.querySelector('.qty').value);
+      let rowSubtotal = price * qty;
+      row.querySelector('.subtotal').textContent = `$${rowSubtotal.toLocaleString()}`;
+      totalQty += qty;
+      subtotal += rowSubtotal;
+    });
+
+    totalItemsEl.textContent = totalItems;
+    totalQtyEl.textContent = totalQty;
+    subtotalEl.textContent = `$${subtotal.toLocaleString()}`;
+    totalPayableEl.textContent = `$${(subtotal + shippingCost).toLocaleString()}`;
+  }
+
+  cartBody.addEventListener('click', e => {
+    if (e.target.classList.contains('plus')) {
+      let qtyInput = e.target.parentElement.querySelector('.qty');
+      qtyInput.value = parseInt(qtyInput.value) + 1;
+      updateCartTotals();
+    }
+    if (e.target.classList.contains('minus')) {
+      let qtyInput = e.target.parentElement.querySelector('.qty');
+      if (parseInt(qtyInput.value) > 1) {
+        qtyInput.value = parseInt(qtyInput.value) - 1;
+        updateCartTotals();
+      }
+    }
+    if (e.target.classList.contains('remove-btn')) {
+      e.target.closest('tr').remove();
+      updateCartTotals();
+    }
+  });
+
+  updateCartTotals();
+</script>
+</body>
+</html>

@@ -30,7 +30,7 @@ body{margin:0; font-family:'Inter', sans-serif; background:#f9f9f9; overflow-x:h
 
 /* Navbar */
 nav.navbars{background:#fff; padding:5px 15px; border-bottom:1px solid #ddd; position:relative; z-index:1001;}
-.nav-row{display:flex; align-items:center; justify-content:space-between; flex-wrap:nowrap;}
+.nav-row{display:flex; align-items:center; justify-content:space-between; flex-wrap:nowrap;height:50px ;}
 .language-currency{display:flex; align-items:center; gap:6px; font-size:14px; flex-shrink:0;}
 .language, .currency{display:flex; align-items:center; gap:4px; cursor:pointer; white-space:nowrap;}
 .language img.flag{width:16px;height:14px; object-fit:cover; border-radius:2px;}
@@ -77,98 +77,135 @@ nav.navbars{background:#fff; padding:5px 15px; border-bottom:1px solid #ddd; pos
 .has-submenu.open>.arrow{transform:rotate(90deg);}
 .submenu{display:none; flex-direction:column; margin-left:10px;}
 .submenu .sidebar-item{padding-left:30px; font-size:14px;}
-.card-custom {
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    }
-    .product-img {
-      width: 50px;
-      height: 50px;
-      border-radius: 6px;
-      object-fit: cover;
-    }
-    .address-card {
-      border-radius: 10px;
-      padding: 15px;
-    }
+/* Images */
+.product-img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+  .section-heading .title {
+    font-family: 'Lora', serif;
+    font-weight: 500;
+    font-size: 36px;
+    text-align: center;
+    margin-top: 3rem;
+  }
+  .section-heading .subtitle {
+    font-family: 'Merriweather', serif;
+    font-weight: 300;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1rem;
+  }
+  .subtitle::before,
+  .subtitle::after {
+    content: "";
+    flex: 0 0 48px;
+    height: 1px;
+    background-color: #666;
+    display: block;
+  }
+  
+  .cards-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    justify-content: center;
+  }
 
-    /* Step Tracker */
-    .step-container {
-      position: relative;
-      width: 100%;
-      max-width: 600px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 0 auto 30px auto;
+  /* Responsive card sizes */
+  .cards {
+    position: relative;
+    overflow: hidden;
+    height: 472px;
+    flex: 0 0 100%;
+    max-width: 100%;
+    cursor: pointer;
+  }
+  @media (min-width: 576px) {
+    .cards {
+      flex: 0 0 50%;
+      max-width: 50%;
     }
-    .step-container::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background-color: #ccc;
-      transform: translateY(-50%);
-      z-index: 1;
+  }
+  @media (min-width: 992px) {
+    .cards {
+      flex: 0 0 25%;
+      max-width: 25%;
     }
-    .step {
-      position: relative;
-      z-index: 2;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background-color: #ccc;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s, transform 0.3s;
-      flex-shrink: 0;
-    }
-    .step.active {
-      background-color: #ce0d0d;
-    }
-    .step-label {
-      position: absolute;
-      top: 60px;
-      font-size: 14px;
-      color: #333;
-      text-align: center;
-      width: 80px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
+  }
 
-    /* Responsive tweaks */
-    @media (max-width: 768px) {
-      .step-label {
-        font-size: 12px;
-        width: 70px;
-      }
-      table {
-        font-size: 14px;
-      }
-    }
-    @media (max-width: 480px) {
-      .step-container::before { height: 3px; }
-      .step { width: 40px; height: 40px; font-size: 14px; }
-      .step-label { top: 50px; font-size: 11px; width: 60px; }
-      table {
-        font-size: 13px;
-      }
-    }
-    @media (max-width: 320px) {
-      .step-container { gap: 8px; }
-      .step { width: 35px; height: 35px; font-size: 12px; }
-      .step-label { top: 45px; font-size: 10px; width: 50px; }
-      table {
-        font-size: 12px;
-      }
-    }
+  .cards img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+  
+  /* Zoom image on hover */
+  .cards:hover img {
+    transform: scale(1.05);
+  }
+
+  .caption {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 10px 12px;
+    text-align: center;
+    font-weight: 400;
+    font-size: 16px;
+    background: #fff;
+    color: #111010;
+    z-index: 10;
+  }
+
+  /* Hover text overlay */
+  .hover-text {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Lora', serif;
+    font-weight: 500;
+    font-size: 24px;
+    color: white;
+    
+    padding: 8px 20px;
+    border-radius: 30px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+    text-decoration: none;
+    z-index: 20;
+  }
+  
+  /* Show hover-text on card hover */
+  .cards:hover .hover-text {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Style anchor inside hover-text */
+  .hover-text a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: 600;
+  }
+  .hover-text a:hover {
+    text-decoration: underline;
+  }
+  .product-img {
+    width: 100%;
+    display: block;
+  }
+
 /* Footer */
 footer{background:#111213; padding:40px 0; color:#fff; font-family:'Lora', serif;}
 footer h6{font-weight:500; font-size:20px; margin-bottom:15px;}
@@ -176,6 +213,7 @@ footer p, footer ul li, footer ul li a{font-weight:500; font-size:16px; color:#f
 footer ul li{margin-bottom:8px;}
 footer ul li a:hover{text-decoration:underline;}
 
+    
 /* Responsive */
 @media(max-width:768px){.search-bar{width:120px;} .promoBanner{font-size:13px;}}
 @media(max-width:480px){.nav-row{gap:5px;}.language-currency{font-size:11px; gap:4px;}.language img.flag{width:14px;height:12px;}.logo-wrapper{left:50%; transform:translateX(-50%);}.navbar-brand img{height:28px;}.right-controls{gap:4px;}.search-bar{width:80px;}.search-bar input{font-size:11px; padding:3px 22px 3px 6px;}.menu-icon{font-size:12px; padding:2px 6px;}}
@@ -272,138 +310,86 @@ footer ul li a:hover{text-decoration:underline;}
   </nav>
 </div>
 
-  <!-- Step Tracker -->
-  <div class="step-container">
-    <div class="step active" data-step="1">
-      1
-      <div class="step-label">Cart</div>
+<!-- Desktop Filter/Sort Row -->
+<div class="container my-3 d-flex justify-content-end gap-2">
+  <button class="btn btn-light"><i class="fa-solid fa-filter"></i> Filter</button>
+  <button class="btn btn-light"><i class="fa-solid fa-arrow-up-wide-short"></i> Sort By</button>
+</div>
+<div class="container-fluid">
+  <div class="row g-0"> <!-- g-0 removes gaps -->
+    <div class="col-md-3">
+      <img src="/images/Frame 37.png" class="product-img">
     </div>
-    <div class="step" data-step="2">
-      2
-      <div class="step-label">Checkout</div>
+    <div class="col-md-3">
+      <img src="/images/Frame 38.png" class="product-img">
     </div>
-    <div class="step" data-step="3">
-      3
-      <div class="step-label">Payment</div>
+    <div class="col-md-3">
+      <img src="/images/Frame 39.png" class="product-img">
+    </div>
+    <div class="col-md-3">
+      <img src="/images/Frame 40.png" class="product-img">
+    </div>
+
+    <div class="col-md-3">
+      <img src="/images/Frame 37.png" class="product-img">
+    </div>
+    <div class="col-md-3">
+      <img src="/images/Frame 38.png" class="product-img">
+    </div>
+    <div class="col-md-3">
+      <img src="/images/Frame 39.png" class="product-img">
+    </div>
+    <div class="col-md-3">
+      <img src="/images/Frame 40.png" class="product-img">
+    </div>
+  </div>
+</div>
+
+<div class="section-heading">
+    <div class="title">NEW ARRIVAL</div>
+    <div class="subtitle">BINDAZZ</div>
+  </div>
+
+  <!-- 4 Image Row -->
+  <div class="cards-row">
+    <div class="cards">
+      <img src="/images/Rectangle.png" alt="Image 1" />
+      <div class="hover-text">
+        <a href="#">For Him</a> | <a href="#">For Her</a>
+      </div>
+      <div class="caption">JACKET</div>
+    </div>
+    <div class="cards">
+      <img src="/images/Rectangle.png" alt="Image 2" />
+      <div class="hover-text">
+        <a href="#">For Him</a> | <a href="#">For Her</a>
+      </div>
+      <div class="caption">LEATHER BAGS</div>
+    </div>
+    <div class="cards">
+      <img src="/images/Rectangle 6 (1).png" alt="Image 3" />
+      <div class="hover-text">
+        <a href="#">For Him</a> | <a href="#">For Her</a>
+      </div>
+      <div class="caption">BELT</div>
+    </div>
+    <div class="cards">
+      <img src="/images/Frame 38.png" alt="Image 4" />
+      <div class="hover-text">
+        <a href="#">For Him</a> | <a href="#">For Her</a>
+      </div>
+      <div class="caption">FOOTWARE</div>
     </div>
   </div>
 
-  <div class="row g-3">
-    <div class="col-lg-8">
-      <div class="card card-custom p-3 mb-3">
-        <h5 class="text-primary">Final Items</h5>
-        <!-- Table wrapper for mobile scroll -->
-        <div class="table-responsive">
-          <table class="table align-middle">
-            <thead>
-              <tr>
-                <th></th>
-                <th>Product</th>
-                <th class="text-center">Price</th>
-                <th class="text-center">Qty</th>
-                <th class="text-end">Subtotal</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><img src="/Rectangle 5 (7).png" class="product-img"></td>
-                <td>The Cream Full Jacket</td>
-                <td class="text-center">$1,999</td>
-                <td class="text-center">1</td>
-                <td class="text-end">$1,999</td>
-              </tr>
-              <tr>
-                <td><img src="/Rectangle 6 (12).png" class="product-img"></td>
-                <td>The Cream Full Jacket</td>
-                <td class="text-center">$1,999</td>
-                <td class="text-center">1</td>
-                <td class="text-end">$1,999</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="d-flex justify-content-between border-top pt-2 flex-wrap">
-          <small>Total item: 2</small>
-          <small>Total quantity: 2</small>
-        </div>
-      </div>
 
-      <div class="row g-3">
-        <div class="col-md-6">
-          <div class="border address-card">
-            <div class="d-flex justify-content-between align-items-center flex-wrap">
-              <h6>Manage Shipping Address</h6>
-              <button class="btn btn-link p-0" id="toggleShip"><i class="fa fa-minus"></i></button>
-            </div>
-            <div id="shipBody">
-              <strong>MD Jone Doe Sulaiman</strong>
-              <div>01987654321</div>
-              <div>ridoysheikh15@gmail.com</div>
-              <div>50/3 Nasir sarak, sonadanga, khulna</div>
-              <div>Khulna sadar - 9100</div>
-              <div>Bangladesh</div>
-              <a href="#" class="d-block mt-2 text-end"><i class="fa fa-pen"></i> Update Address</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="border address-card">
-            <div class="d-flex justify-content-between align-items-center flex-wrap">
-              <h6>Manage Billing Address</h6>
-              <button class="btn btn-link p-0" id="toggleBill"><i class="fa fa-plus"></i></button>
-            </div>
-            <div id="billBody" style="display:none">
-              <strong>No billing address</strong>
-              <div>Add a billing address for invoice and receipt.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- Cart Summary -->
-    <div class="col-lg-4">
-      <div class="card card-custom p-3">
-        <h5 class="text-primary">Cart Total</h5>
-        <hr>
-        <div class="d-flex justify-content-between"><span>Subtotal</span><span>$3,998</span></div>
-        <div class="d-flex justify-content-between"><span>Shipping</span><span>$100</span></div>
-        <div class="d-flex justify-content-between"><span>Coupon discount</span><span>$0</span></div>
-        <hr>
-        <div class="d-flex justify-content-between fw-bold"><span>Total Payable</span><span>$4,098</span></div>
-        <button class="btn btn-primary w-100 mt-3">Process to pay</button>
-      </div>
-    </div>
+  <div class="text-center my-3">
+    <button class="btn btn-dark">Load more</button>
   </div>
+</div>
 
-  <script>
-  // Step tracker click handling
-  const steps = document.querySelectorAll('.step');
-
-  steps.forEach(step => {
-    step.addEventListener('click', () => {
-      // Remove active class from all steps
-      steps.forEach(s => s.classList.remove('active'));
-
-      // Add active class only to the clicked step
-      step.classList.add('active');
-    });
-  });
-
-  // Address toggle
-  document.getElementById('toggleShip').addEventListener('click', function(){
-    const body = document.getElementById('shipBody');
-    body.style.display = body.style.display === 'none' ? 'block' : 'none';
-    this.innerHTML = body.style.display === 'none' ? '<i class="fa fa-plus"></i>' : '<i class="fa fa-minus"></i>';
-  });
-
-  document.getElementById('toggleBill').addEventListener('click', function(){
-    const body = document.getElementById('billBody');
-    body.style.display = body.style.display === 'none' ? 'block' : 'none';
-    this.innerHTML = body.style.display === 'none' ? '<i class="fa fa-plus"></i>' : '<i class="fa fa-minus"></i>';
-  });
-</script>
-
+<!-- Top Categories -->
 
 <!-- Footer -->
 <footer>

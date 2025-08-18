@@ -14,7 +14,7 @@ body{margin:0; font-family:'Inter', sans-serif; background:#f9f9f9; overflow-x:h
 
 /* Navbar */
 nav.navbars{background:#fff; padding:5px 15px; border-bottom:1px solid #ddd; position:relative; z-index:1001;}
-.nav-row{display:flex; align-items:center; justify-content:space-between; flex-wrap:nowrap;}
+.nav-row{display:flex; align-items:center; justify-content:space-between; flex-wrap:nowrap;height: 50px;}
 .language-currency{display:flex; align-items:center; gap:6px; font-size:14px; flex-shrink:0;}
 .language, .currency{display:flex; align-items:center; gap:4px; cursor:pointer; white-space:nowrap;}
 .language img.flag{width:16px;height:14px; object-fit:cover; border-radius:2px;}

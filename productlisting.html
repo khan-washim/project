@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bindazz E-Commerce</title>
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;700&display=swap" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+
+<style>
+  /* Reset and global settings */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: 'Inter', sans-serif; /* choose one font for consistency */
+  background: #f9f9f9;
+}
+
+/* Top banner */
+.top-banner {
+  background: #000;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  font-size: 14px;
+}
+
+/* Images */
+.product-img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+  .section-heading .title {
+    font-family: 'Lora', serif;
+    font-weight: 500;
+    font-size: 36px;
+    text-align: center;
+    margin-top: 3rem;
+  }
+  .section-heading .subtitle {
+    font-family: 'Merriweather', serif;
+    font-weight: 300;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1rem;
+  }
+  .subtitle::before,
+  .subtitle::after {
+    content: "";
+    flex: 0 0 48px;
+    height: 1px;
+    background-color: #666;
+    display: block;
+  }
+  
+  .cards-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    justify-content: center;
+  }
+
+  /* Responsive card sizes */
+  .cards {
+    position: relative;
+    overflow: hidden;
+    height: 472px;
+    flex: 0 0 100%;
+    max-width: 100%;
+    cursor: pointer;
+  }
+  @media (min-width: 576px) {
+    .cards {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+  }
+  @media (min-width: 992px) {
+    .cards {
+      flex: 0 0 25%;
+      max-width: 25%;
+    }
+  }
+
+  .cards img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+  
+  /* Zoom image on hover */
+  .cards:hover img {
+    transform: scale(1.05);
+  }
+
+  .caption {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 10px 12px;
+    text-align: center;
+    font-weight: 400;
+    font-size: 16px;
+    background: #fff;
+    color: #111010;
+    z-index: 10;
+  }
+
+  /* Hover text overlay */
+  .hover-text {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Lora', serif;
+    font-weight: 500;
+    font-size: 24px;
+    color: white;
+    
+    padding: 8px 20px;
+    border-radius: 30px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+    text-decoration: none;
+    z-index: 20;
+  }
+  
+  /* Show hover-text on card hover */
+  .cards:hover .hover-text {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Style anchor inside hover-text */
+  .hover-text a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: 600;
+  }
+  .hover-text a:hover {
+    text-decoration: underline;
+  }
+
+.language span, .currency span {
+  font-family: 'Inter', sans-serif; font-weight: 400; font-size: 16px;
+}
+nav.navbars {
+  background: #fff; padding: 8px 18px; border-bottom: 1px solid #ddd;
+}
+.top-row {
+  display: flex; align-items: center; justify-content: space-between;
+  position: relative; min-height: 48px;
+}
+
+/* Left side: language & currency */
+.language-currency { display: flex; align-items: center; gap: 4px; color: #333; min-width: 120px; flex-shrink: 0; }
+.language, .currency { display: flex; align-items: center; gap: 6px; cursor: pointer; user-select: none; white-space: nowrap; }
+.language img.flag { width: 16px; height: 14px; object-fit: cover; border-radius: 2px; }
+.dropdown-arrow { width: 10px; height: 6px; stroke: #333; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Centered Logo */
+.logo-wrapper { position: absolute; left: 50%; transform: translateX(-50%); height: 48px; display: flex; align-items: center; white-space: nowrap; }
+.navbar-brand img { height: 38px; width: auto; max-width: 100%; }
+
+/* Right side controls */
+.right-controls { display: flex; align-items: center; gap: 5px; min-width: 120px; flex-shrink: 0; }
+
+/* Search bar */
+.search-bar { position: relative; width: 286px; }
+.search-bar input {
+  width: 100%; padding: 6px 35px 6px 12px; border-radius: 7px;
+  border: 1px solid #ccc; font-size: 12px; font-family: 'Roboto', sans-serif;
+  font-weight: 400; outline: none;
+}
+.search-bar .search-icon {
+  position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+  font-size: 1rem; color: #666; pointer-events: none;
+}
+
+/* Menu toggle */
+.menu-icon { font-size: 14px; color: #333; background: none; border: none; cursor: pointer; padding: 0; }
+.menu-text { font-family: 'Lora', serif; font-weight: 400; font-size: 14px; }
+
+/* Desktop Hidden Nav */
+.hidden-nav {
+  display: none; background: #fff; padding: 10px 0; border-top: 1px solid #ddd;
+}
+.hidden-nav .nav-container { display: flex; justify-content: space-between; align-items: center; }
+.hidden-nav .nav-group { display: flex; gap: 20px; }
+.hidden-nav a {
+  text-decoration: none; font-family: 'Lora', serif; font-size: 14px; color: #333; transition: color 0.3s;
+}
+.hidden-nav a:hover { color: #007BFF; }
+
+/* Sidebar (Mobile) */
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(100%); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.sidebar {
+  position: fixed; top: 0; right: -260px;
+  width: 260px; height: 100%; background: #d15c5c;
+  box-shadow: -2px 0 6px rgba(0,0,0,0.15);
+  padding: 20px; transition: right 0.3s ease;
+  display: flex; flex-direction: column; z-index: 2000;
+}
+.sidebar.active {
+  right: 0; animation: fadeInRight 0.3s ease forwards;
+}
+.sidebar nav { display: flex; flex-direction: column; }
+
+/* Top logo row inside sidebar */
+.sidebar-logo-row {
+  display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;
+}
+.sidebar-logo-row img { height: 28px; width: auto; }
+
+/* Sidebar item hover bar effect */
+.sidebar-item {
+  position: relative;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 15px;
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Lora', serif;
+  font-size: 16px;
+  overflow: hidden;
+}
+.sidebar-item::before {
+  content: "";
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: rgba(255,255,255,0.2);
+  transition: left 0.3s ease;
+  z-index: 0;
+}
+.sidebar-item:hover::before {
+  left: 0;
+}
+.sidebar-item span, .sidebar-item .arrow { position: relative; z-index: 1; }
+.sidebar-item .arrow { font-size: 14px; }
+
+/* Submenu */
+.submenu {
+  display: none; flex-direction: column;
+}
+.submenu .sidebar-item { padding-left: 30px; font-size: 14px; }
+
+/* Arrow toggle */
+.has-submenu.open .arrow { transform: rotate(90deg); transition: transform 0.2s; }
+ footer {
+      background-color: #111213;
+      padding: 40px 0;
+    }
+   footer h6 {
+    font-family: 'Lora', serif;
+    font-weight: 500; /* Medium */
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #fff;
+  }
+    footer p,
+  footer ul li,
+  footer ul li a {
+    font-family: 'Lora', serif;
+    font-weight: 500; /* Medium */
+    font-size: 16px;
+    color: #fff;
+  }
+
+  footer ul li {
+    margin-bottom: 8px;
+  }
+
+  footer ul li a {
+    text-decoration: none;
+  }
+    footer ul li a:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 767px) {
+      footer .social-icons {
+        text-align: center !important;
+        margin-top: 15px;
+      }
+    }
+@media (max-width: 768px) {
+  .search-bar { width: 80px; }
+  .hidden-nav { display: none !important; }
+}
+@media (max-width: 480px) {
+  .language-currency {  font-size: 12px; min-width: 40px; }
+  .search-bar { width: 60px; }
+  .search-bar input { font-size: 12px; padding: 5px 30px 5px 10px; }
+  .navbar-brand img { height: 25px; width: 80%; }
+  .lang-text {
+    font-size: 8px;
+  }
+}
+@media (max-width: 320px) {
+  .language-currency {
+    gap: 0; /* reduce spacing */
+    flex-wrap: nowrap; /* prevent breaking into 2 lines */
+    min-width: 0; /* allow shrink */
+  }
+  .lang-text,
+  .currency-text {
+    font-size: 9px; /* even smaller text */
+    white-space: nowrap; /* prevent breaking words */
+  }
+  .language img.flag {
+    width: 14px;
+    height: 10px;
+    flex-shrink: 0; /* flag won't shrink */
+  }
+}
+ 
+</style>
+</head>
+<body>
+
+<nav class="navbars" role="navigation">
+  <div class="top-row">
+    <div class="language-currency " style="padding-right: 5px;">
+     <div class="language">
+  <img src="https://flagcdn.com/us.svg" alt="English" class="flag" />
+  <span class="lang-text">English</span>
+  <i class="fa-solid fa-angle-down"></i>
+</div>
+
+<div class="currency">
+  <span class="currency-text">BDT</span>
+  <i class="fa-solid fa-angle-down"></i>
+</div>
+
+    </div>
+    <div class="logo-wrapper">
+      <a class="navbar-brand" href="#">
+        <img src="/Bindazz-Logo 1.png" alt="Bindazz Logo" />
+      </a>
+    </div>
+    <div class="right-controls">
+      <div class="right-controls">
+  <!-- Search bar -->
+  <div class="search-bar"> <input type="text" placeholder="Search Products" /> <svg xmlns="http://www.w3.org/2000/svg" class="search-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="18" height="18"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> </div> <button id="navbarToggle" class="menu-icon">&#9776;MENU </button> </div>
+
+  <!-- Combined toggle button -->
+  
+</div>
+
+  </div>
+  <div class="hidden-nav" id="hiddenNav">
+    <div class="nav-container">
+      <div class="nav-group">
+        <a href="#">Item 1</a>
+        <a href="#">Item 2</a>
+        <a href="#">Item 3</a>
+      </div>
+      <div class="nav-group">
+        <a href="#">Item 4</a>
+        <a href="#">Item 5</a>
+        <a href="#">Item 6</a>
+      </div>
+      <div class="nav-group">
+        <a href="#">Item 7</a>
+        <a href="#">Item 8</a>
+        <a href="#">Item 9</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Sidebar -->
+<div class="sidebar" id="sidebar">
+  <!-- Top logo row inside sidebar -->
+  <div class="sidebar-logo-row">
+    <a href="#"><img src="/Bindazz-Logo 1.png" alt="Bindazz Logo"></a>
+    <button class="close-btn" id="closeSidebar">&#8594;</button>
+  </div>
+  
+  <nav>
+    <a href="#" class="sidebar-item"><span>Item 1</span><span class="arrow">&gt;</span></a>
+    <a href="#" class="sidebar-item"><span>Item 2</span><span class="arrow">&gt;</span></a>
+    <a href="#" class="sidebar-item has-submenu" id="submenuToggle"><span>Item 3</span><span class="arrow">&gt;</span></a>
+    <div class="submenu" id="submenu">
+      <a href="#" class="sidebar-item"><span>Subitem 3.1</span><span class="arrow">&gt;</span></a>
+      <a href="#" class="sidebar-item"><span>Subitem 3.2</span><span class="arrow">&gt;</span></a>
+      <a href="#" class="sidebar-item"><span>Subitem 3.3</span><span class="arrow">&gt;</span></a>
+    </div>
+    <a href="#" class="sidebar-item"><span>Item 4</span><span class="arrow">&gt;</span></a>
+    <a href="#" class="sidebar-item"><span>Item 5</span><span class="arrow">&gt;</span></a>
+  </nav>
+</div>
+
+<script>
+const toggleBtn = document.getElementById("navbarToggle");
+const hiddenNav = document.getElementById("hiddenNav");
+const sidebar = document.getElementById("sidebar");
+const closeSidebar = document.getElementById("closeSidebar");
+const submenuToggle = document.getElementById("submenuToggle");
+const submenu = document.getElementById("submenu");
+
+function isMobile() { return window.innerWidth <= 768; }
+
+toggleBtn.addEventListener("click", function() {
+  if (isMobile()) { sidebar.classList.add("active"); }
+  else { hiddenNav.style.display = hiddenNav.style.display === "block" ? "none" : "block"; }
+});
+
+closeSidebar.addEventListener("click", function() { sidebar.classList.remove("active"); });
+
+submenuToggle.addEventListener("click", function(e) {
+  e.preventDefault();
+  submenu.style.display = submenu.style.display === "flex" ? "none" : "flex";
+  submenuToggle.classList.toggle("open");
+});
+</script>
+
+
+<!-- Top Banner -->
+<div class="top-banner">
+  30% off on your first order. So add to cart now.
+</div>
+
+<!-- Desktop Filter/Sort Row -->
+<div class="container my-3 d-flex justify-content-end gap-2">
+  <button class="btn btn-light"><i class="fa-solid fa-filter"></i> Filter</button>
+  <button class="btn btn-light"><i class="fa-solid fa-arrow-up-wide-short"></i> Sort By</button>
+</div>
+
+<!-- Products Grid -->
+<div class="cards-row">
+    <div class="cards">
+      <img src="Frame 10.png" alt="Image 1" /> 
+    </div>
+    <div class="cards">
+      <img src="Rectangle 5 (7).png" alt="Image 2" /> 
+    </div>
+    <div class="cards">
+      <img src="Rectangle 6 (12).png" alt="Image 3" />
+    </div>
+    <div class="cards">
+      <img src="Rectangle 5 (7).png" alt="Image 4" />
+    </div>
+  </div>
+ <div class="cards-row">
+    <div class="cards">
+      <img src="Frame 10.png" alt="Image 1" /> 
+    </div>
+    <div class="cards">
+      <img src="Rectangle 5 (7).png" alt="Image 2" /> 
+    </div>
+    <div class="cards">
+      <img src="Rectangle 6 (12).png" alt="Image 3" />
+    </div>
+    <div class="cards">
+      <img src="Rectangle 5 (7).png" alt="Image 4" />
+    </div>
+  </div>
+  <div class="text-center my-3">
+    <button class="btn btn-dark">Load more</button>
+  </div>
+</div>
+
+<!-- Top Categories -->
+<div class="section-heading">
+    <div class="title">NEW ARRIVAL</div>
+    <div class="subtitle">BINDAZZ</div>
+  </div>
+
+  <!-- 4 Image Row -->
+  <div class="cards-row">
+    <div class="cards">
+      <img src="Frame 10.png" alt="Image 1" />
+      <div class="hover-text">
+        <a href="#">For Him</a> | <a href="#">For Her</a>
+      </div>
+      <div class="caption">JACKET</div>
+    </div>
+    <div class="cards">
+      <img src="Rectangle 5 (7).png" alt="Image 2" />
+      <div class="hover-text">
+        <a href="#">For Him</a> | <a href="#">For Her</a>
+      </div>
+      <div class="caption">LEATHER BAGS</div>
+    </div>
+    <div class="cards">
+      <img src="Rectangle 6 (12).png" alt="Image 3" />
+      <div class="hover-text">
+        <a href="#">For Him</a> | <a href="#">For Her</a>
+      </div>
+      <div class="caption">BELT</div>
+    </div>
+    <div class="cards">
+      <img src="Rectangle 5 (7).png" alt="Image 4" />
+      <div class="hover-text">
+        <a href="#">For Him</a> | <a href="#">For Her</a>
+      </div>
+      <div class="caption">FOOTWARE</div>
+    </div>
+  </div>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <h6>COMPANY</h6>
+        <p>Find a location nearest you.<br />
+        <a href="#">See Our Stores</a></p>
+        <p>+88 (0)1987654321<br />
+        hello@binduzz.com</p>
+      </div>
+      <div class="col-md-3">
+        <h6>INFORMATION</h6>
+        <ul class="list-unstyled">
+          <li><a href="#">My Account</a></li>
+          <li><a href="#">Login</a></li>
+          <li><a href="#">My Cart</a></li>
+          <li><a href="#">Wishlist</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h6>SERVICE</h6>
+        <ul class="list-unstyled">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Delivery Info</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms & Condition</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h6>SUBSCRIBE</h6>
+        <p>Enter your email below to be the first to know about new collections and product launches.</p>
+        
+        <div class="input-group position-relative">
+  <span style="left: 10px; z-index: 40;" class="position-absolute ">
+    <i class="bi bi-envelope-fill text-danger fs-3" ></i>
+  </span>
+  <input type="email" class="form-control subscribe-input ps-5 bg-white text-dark z-5" placeholder="Your Email" />
+  <button class="btn btn-light">→</button>
+</div>
+
+
+<style>
+  .subscribe-input {
+    padding-left: 2rem; /* leave space for icon */
+  }
+  
+</style>
+
+      </div>
+    </div>
+
+    <hr class="my-4">
+
+    <div class="row align-items-center text-center text-lg-start">
+      <div class="col-lg-4 mb-2 mb-lg-0">
+        <i class="fab fa-cc-visa fa-2x me-2" style="color:#1a1f71;"></i>
+        <i class="fab fa-cc-mastercard fa-2x me-2" style="color:#eb001b;"></i>
+        <i class="fab fa-cc-amex fa-2x me-2" style="color:#2e77bc;"></i>
+        <i class="fab fa-cc-discover fa-2x me-2" style="color:#ff6000;"></i>
+        <i class="fab fa-cc-paypal fa-2x" style="color:#003087;"></i>
+      </div>
+
+      <div class="col-lg-4 mb-2 mb-lg-0 text-center" style="color: #fff;">
+        <i class="far fa-copyright" ></i> bindaz25
+      </div>
+
+      <div class="col-lg-4 text-lg-end social-icons">
+        <i class="fab fa-facebook fa-2x me-2" style="color:#fff;"></i>
+        <i class="fab fa-instagram fa-2x me-2" style="color:#fff;"></i>
+        <i class="fab fa-twitter fa-2x me-2" style="color:#fff;"></i>
+        <i class="fab fa-youtube fa-2x me-2" style="color:#fff;"></i>
+        <i class="fab fa-linkedin fa-2x" style="color:#fff;"></i>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
