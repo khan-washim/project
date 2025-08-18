@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bindazz E-Commerce</title>
+
+<!-- Bootstrap & Font Awesome -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;700&display=swap" rel="stylesheet" />
+
+<style>
+/* Reset & Global */
+*, *::before, *::after { box-sizing: border-box; }
+body{margin:0; font-family:'Inter', sans-serif; background:#f9f9f9; overflow-x:hidden;}
+
+/* Promo Banner */
+.promoBanner {
+  background: #000; 
+  color: #fff; 
+  text-align: center; 
+  padding:  0; 
+  font-size: 14px; 
+  font-family: 'Roboto', sans-serif; 
+  display: block;
+  width: 100%; /* always visible */
+}
+
+/* Navbar */
+nav.navbars{background:#fff; padding:5px 15px; border-bottom:1px solid #ddd; position:relative; z-index:1001;}
+.nav-row{display:flex; align-items:center; justify-content:space-between; flex-wrap:nowrap;}
+.language-currency{display:flex; align-items:center; gap:6px; font-size:14px; flex-shrink:0;}
+.language, .currency{display:flex; align-items:center; gap:4px; cursor:pointer; white-space:nowrap;}
+.language img.flag{width:16px;height:14px; object-fit:cover; border-radius:2px;}
+.logo-wrapper{position:absolute; left:50%; transform:translateX(-50%);}
+.navbar-brand img{height:38px; width:auto;}
+.right-controls{display:flex; align-items:center; gap:5px; flex-shrink:0;}
+.search-bar{position:relative; width:220px;}
+.search-bar input{width:100%; padding:5px 30px 5px 10px; border-radius:5px; border:1px solid #ccc; font-size:13px;}
+.search-bar .search-icon{position:absolute; right:8px; top:50%; transform:translateY(-50%); font-size:1rem; color:#666; pointer-events:none;}
+.menu-icon{font-size:14px; color:#333; background:none; border:none; cursor:pointer;}
+
+/* Hidden Nav Desktop */
+.hidden-nav {
+  display: none; /* default hidden */
+  background: #fff;
+  padding: 10px 0;
+  border-top: 1px solid #ddd;
+  position: relative;
+  width: 100%;
+  z-index: 1000;
+}
+.hidden-nav .nav-container{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap;}
+.hidden-nav .nav-group{display:flex; gap:20px; flex-wrap:wrap;}
+.hidden-nav a{text-decoration:none; font-family:'Lora', serif; font-size:14px; color:#333; transition:color 0.3s;}
+.hidden-nav a:hover{color:#007BFF;}
+.dropdown{position:relative; display:inline-block;}
+.dropdown-menu{display:none; position:absolute; background:#fff; min-width:160px; box-shadow:0px 4px 8px rgba(0,0,0,0.1); z-index:100; border-radius:6px;}
+.dropdown-menu a{display:block; padding:8px 12px; color:#333; text-decoration:none; white-space:nowrap;}
+.dropdown-menu a:hover{background:#f3f3f3;}
+.dropdown:hover>.dropdown-menu{display:block;}
+.dropdown.nested{position:relative;}
+.dropdown.nested .dropdown-menu{top:0; left:100%; margin-left:2px; border-radius:6px;}
+
+/* Sidebar Mobile */
+.sidebar{position:fixed; top:0; right:-300px; width:300px; height:100%; background:#d15c5c; padding:20px; transition:right 0.3s ease; display:flex; flex-direction:column; z-index:2000;}
+.sidebar.active{right:0;}
+.sidebar-logo-row{display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;}
+.sidebar-logo-row img{height:28px; width:auto;}
+.close-btn{background:none; border:none; color:#fff; font-size:18px; cursor:pointer;}
+.sidebar-item{display:flex; justify-content:space-between; align-items:center; padding:12px 15px; color:#fff; text-decoration:none; font-family:'Lora', serif; font-size:16px; cursor:pointer; border-radius:6px; position:relative;}
+.sidebar-item:hover{background:rgba(255,255,255,0.2);}
+.sidebar-item span, .sidebar-item .arrow{position:relative; z-index:1;}
+.sidebar-item .arrow{font-size:14px; transform:rotate(0deg); transition:transform 0.3s;}
+.has-submenu.open>.arrow{transform:rotate(90deg);}
+.submenu{display:none; flex-direction:column; margin-left:10px;}
+.submenu .sidebar-item{padding-left:30px; font-size:14px;}
+
+/* Footer */
+footer{background:#111213; padding:40px 0; color:#fff; font-family:'Lora', serif;}
+footer h6{font-weight:500; font-size:20px; margin-bottom:15px;}
+footer p, footer ul li, footer ul li a{font-weight:500; font-size:16px; color:#fff;}
+footer ul li{margin-bottom:8px;}
+footer ul li a:hover{text-decoration:underline;}
+
+/* Responsive */
+@media(max-width:768px){.search-bar{width:120px;} .promoBanner{font-size:13px;}}
+@media(max-width:480px){.nav-row{gap:5px;}.language-currency{font-size:11px; gap:4px;}.language img.flag{width:14px;height:12px;}.logo-wrapper{left:50%; transform:translateX(-50%);}.navbar-brand img{height:28px;}.right-controls{gap:4px;}.search-bar{width:80px;}.search-bar input{font-size:11px; padding:3px 22px 3px 6px;}.menu-icon{font-size:12px; padding:2px 6px;}}
+@media(max-width:320px){.nav-row{gap:3px;}.language-currency{font-size:10px; ;}.language img.flag{width:8px; height:10px;}.logo-wrapper{left:47%; transform:translateX(-50%);}.navbar-brand img{height:22px;border-left: 4px;}.search-bar{width:44px;}.search-bar input{font-size:10px; padding:5px 15px 2px 10px;}.menu-icon{font-size:8px; padding:1px 5px;}}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbars">
+  <div class="nav-row">
+    <div class="language-currency">
+      <div class="language"><img src="https://flagcdn.com/us.svg" alt="English" class="flag" /> <span>English</span> <i class="fa-solid fa-angle-down"></i></div>
+      <div class="currency"><span>BDT</span> <i class="fa-solid fa-angle-down"></i></div>
+    </div>
+    <div class="logo-wrapper"><a class="navbar-brand" href="#"><img src="/images/Bindazz-Logo 1.png" alt="Bindazz Logo" /></a></div>
+    <div class="right-controls">
+      <div class="search-bar"><input type="text" placeholder="Search Products"><i class="fa-solid fa-magnifying-glass search-icon"></i></div>
+      <button id="navbarToggle" class="menu-icon">&#9776; MENU</button>
+    </div>
+  </div>
+
+  <!-- Hidden Nav Desktop -->
+  <div class="hidden-nav" id="hiddenNav">
+    <div class="nav-container">
+      <div class="nav-group">
+        <div class="dropdown">
+          <a href="#">NEW ARRIVAL</a>
+          <div class="dropdown-menu">
+            <a href="#">Shirts</a>
+            <div class="dropdown nested">
+              <a href="#">T-Shirts ▸</a>
+              <div class="dropdown-menu">
+                <a href="#">Round Neck</a>
+                <a href="#">V-Neck</a>
+                <a href="#">Polo</a>
+              </div>
+            </div>
+            <a href="#">Shoes</a>
+            <a href="#">Watches</a>
+            <a href="#">Bags</a>
+          </div>
+        </div>
+        <a href="#">TRENDING</a>
+        <a href="#">ONSALE</a>
+      </div>
+      <div class="nav-group">
+        <a href="#">MEN</a>
+        <a href="#">WOMEN</a>
+        <a href="#">KIDS</a>
+      </div>
+      <div class="nav-group">
+        <a href="#">CONTACT</a>
+        <a href="#">CART</a>
+        <a href="#">LOGIN</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Promo Banner -->
+  <div class=" promoBanner" id="promoBanner">
+    30% off on your first order. So add to cart now.
+  </div>
+</nav>
+
+<!-- Sidebar Mobile -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-logo-row">
+    <a href="#"><img src="/images/Bindazz-Logo 1.png" alt="Bindazz Logo"></a>
+    <button class="close-btn" id="closeSidebar">&#8594;</button>
+  </div>
+  <nav>
+    <a href="#" class="sidebar-item has-submenu"><span>NEW ARRIVAL</span><span class="arrow">&gt;</span></a>
+    <div class="submenu">
+      <a href="#" class="sidebar-item">Shirts</a>
+      <a href="#" class="sidebar-item has-submenu">T-Shirts <span class="arrow">&gt;</span></a>
+      <div class="submenu">
+        <a href="#" class="sidebar-item">Round Neck</a>
+        <a href="#" class="sidebar-item">V-Neck</a>
+        <a href="#" class="sidebar-item">Polo</a>
+      </div>
+      <a href="#" class="sidebar-item">Shoes</a>
+      <a href="#" class="sidebar-item">Watches</a>
+      <a href="#" class="sidebar-item">Bags</a>
+    </div>
+    <a href="#" class="sidebar-item">TRENDING</a>
+    <a href="#" class="sidebar-item">ONSALE</a>
+    <a href="#" class="sidebar-item">MEN</a>
+    <a href="#" class="sidebar-item">WOMEN</a>
+    <a href="#" class="sidebar-item">KIDS</a>
+    <a href="#" class="sidebar-item">CONTACT</a>
+    <a href="#" class="sidebar-item">CART</a>
+    <a href="#" class="sidebar-item">LOGIN</a>
+  </nav>
+</div>
+
+
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <h6>COMPANY</h6>
+        <p>Find a location nearest you.<br><a href="#">See Our Stores</a></p>
+        <p>+88 (0)1987654321<br>hello@bindazz.com</p>
+      </div>
+      <div class="col-md-3">
+        <h6>INFORMATION</h6>
+        <ul class="list-unstyled">
+          <li><a href="#">My Account</a></li>
+          <li><a href="#">Login</a></li>
+          <li><a href="#">My Cart</a></li>
+          <li><a href="#">Wishlist</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h6>SERVICE</h6>
+        <ul class="list-unstyled">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Delivery Info</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms & Condition</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h6>SUBSCRIBE</h6>
+        <div class="input-group position-relative">
+          <span style="left:10px; z-index:40;" class="position-absolute"><i class="bi bi-envelope-fill text-danger fs-3"></i></span>
+          <input type="email" class="form-control subscribe-input ps-5 bg-white text-dark" placeholder="Your Email" />
+          <button class="btn btn-light">→</button>
+        </div>
+      </div>
+    </div>
+    <hr class="my-4">
+    <div class="row align-items-center text-center text-lg-start">
+      <div class="col-lg-4 mb-2 mb-lg-0">
+        <i class="fab fa-cc-visa fa-2x me-2" style="color:#1a1f71;"></i>
+        <i class="fab fa-cc-mastercard fa-2x me-2" style="color:#eb001b;"></i>
+        <i class="fab fa-cc-amex fa-2x me-2" style="color:#2e77bc;"></i>
+        <i class="fab fa-cc-discover fa-2x me-2" style="color:#ff6000;"></i>
+        <i class="fab fa-cc-paypal fa-2x" style="color:#003087;"></i>
+      </div>
+      <div class="col-lg-4 mb-2 mb-lg-0 text-center"><i class="far fa-copyright"></i> bindaz25</div>
+      <div class="col-lg-4 text-lg-end social-icons">
+        <i class="fab fa-facebook fa-2x me-2" style="color:#fff;"></i>
+        <i class="fab fa-instagram fa-2x me-2" style="color:#fff;"></i>
+        <i class="fab fa-twitter fa-2x me-2" style="color:#fff;"></i>
+        <i class="fab fa-youtube fa-2x me-2" style="color:#fff;"></i>
+        <i class="fab fa-linkedin fa-2x" style="color:#fff;"></i>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Toggle hidden-nav / sidebar
+const toggleBtn = document.getElementById("navbarToggle");
+const hiddenNav = document.getElementById("hiddenNav");
+const sidebar = document.getElementById("sidebar");
+const closeSidebar = document.getElementById("closeSidebar");
+
+// Sidebar submenu toggle
+sidebar.querySelectorAll(".has-submenu").forEach((item) => {
+  item.addEventListener("click", (e) => {
+    e.preventDefault();
+    const submenu = item.nextElementSibling;
+    if (submenu) {
+      submenu.style.display =
+        submenu.style.display === "flex" ? "none" : "flex";
+      item.classList.toggle("open");
+    }
+  });
+});
+
+toggleBtn.addEventListener("click", () => {
+  if (window.innerWidth <= 768) {
+    sidebar.classList.add("active");
+  } else {
+    hiddenNav.style.display =
+      hiddenNav.style.display === "block" ? "none" : "block";
+  }
+});
+
+closeSidebar.addEventListener("click", () => {
+  sidebar.classList.remove("active");
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

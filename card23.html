@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Full Width 4 Image Row</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&display=swap" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500&display=swap" rel="stylesheet" />
+
+<style>
+  /* Reset */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  html, body {
+    margin: 0; padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+  }
+  body {
+    background: #fff;
+    font-family: 'Merriweather', serif;
+  }
+
+  .section-heading .title {
+    font-family: 'Lora', serif;
+    font-weight: 500;
+    font-size: 36px;
+    text-align: center;
+    margin-top: 3rem;
+  }
+  .section-heading .subtitle {
+    font-family: 'Merriweather', serif;
+    font-weight: 300;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1rem;
+  }
+  .subtitle::before,
+  .subtitle::after {
+    content: "";
+    flex: 0 0 48px;
+    height: 1px;
+    background-color: #666;
+    display: block;
+  }
+  
+  .cards-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    justify-content: center;
+  }
+
+  /* Responsive card sizes */
+  .cards {
+    position: relative;
+    overflow: hidden;
+    height: 472px;
+    flex: 0 0 100%;
+    max-width: 100%;
+    cursor: pointer;
+  }
+  @media (min-width: 576px) {
+    .cards {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+  }
+  @media (min-width: 992px) {
+    .cards {
+      flex: 0 0 25%;
+      max-width: 25%;
+    }
+  }
+
+  .cards img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+  
+  /* Zoom image on hover */
+  .cards:hover img {
+    transform: scale(1.05);
+  }
+
+  .caption {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 10px 12px;
+    text-align: center;
+    font-weight: 400;
+    font-size: 16px;
+    background: #fff;
+    color: #111010;
+    z-index: 10;
+  }
+
+  /* Hover text overlay */
+  .hover-text {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Lora', serif;
+    font-weight: 500;
+    font-size: 24px;
+    color: white;
+    
+    padding: 8px 20px;
+    border-radius: 30px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+    text-decoration: none;
+    z-index: 20;
+  }
+  
+  /* Show hover-text on card hover */
+  .cards:hover .hover-text {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Style anchor inside hover-text */
+  .hover-text a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: 600;
+  }
+  .hover-text a:hover {
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+
+<div>
+  <!-- Section Title -->
+  <div class="section-heading">
+    <div class="title">NEW ARRIVAL</div>
+    <div class="subtitle">BINDAZZ</div>
+  </div>
+
+  <!-- 4 Image Row -->
+  <div class="cards-row">
+    <div class="cards">
+      <img src="/images/Frame 38.png" alt="Image 1" />
+      <div class="hover-text">
+        <a href="#">For Him</a> | <a href="#">For Her</a>
+      </div>
+      <div class="caption">JACKET</div>
+    </div>
+    <div class="cards">
+      <img src="/images/Frame 37.png" alt="Image 2" />
+      <div class="hover-text">
+        <a href="#">For Him</a> | <a href="#">For Her</a>
+      </div>
+      <div class="caption">LEATHER BAGS</div>
+    </div>
+    <div class="cards">
+      <img src="/images/Frame 39.png" alt="Image 3" />
+      <div class="hover-text">
+        <a href="#">For Him</a> | <a href="#">For Her</a>
+      </div>
+      <div class="caption">BELT</div>
+    </div>
+    <div class="cards">
+      <img src="/images/Frame 40.png" alt="Image 4" />
+      <div class="hover-text">
+        <a href="#">For Him</a> | <a href="#">For Her</a>
+      </div>
+      <div class="caption">FOOTWARE</div>
+    </div>
+  </div>
+
+  <div class="section-heading">
+    <div class="title">ON SALE</div>
+    <div class="subtitle">BINDAZZ</div>
+  </div>
+
+  <div class="cards-row">
+    <div class="cards">
+      <img src="/images/Frame 40.png" alt="Image 1" />
+      <div class="hover-text">
+        <a href="#">For Him</a> | <a href="#">For Her</a>
+      </div>
+      <div class="caption">JACKET</div>
+    </div>
+    <div class="cards">
+      <img src="/images/Frame 39.png" alt="Image 2" />
+      <div class="hover-text">
+        <a href="#">For Him</a> | <a href="#">For Her</a>
+      </div>
+      <div class="caption">LEATHER BAGS</div>
+    </div>
+    <div class="cards">
+      <img src="/images/Frame 40.png" alt="Image 3" />
+      <div class="hover-text">
+        <a href="#">For Him</a> | <a href="#">For Her</a>
+      </div>
+      <div class="caption">BELT</div>
+    </div>
+    <div class="cards">
+      <img src="/images/Frame 37.png" alt="Image 4" />
+      <div class="hover-text">
+        <a href="#">For Him</a> | <a href="#">For Her</a>
+      </div>
+      <div class="caption">FOOTWARE</div>
+    </div>
+  </div>
+
+  <div class="section-heading">
+    <div class="title">TRENDING</div>
+    <div class="subtitle">BINDAZZ</div>
+  </div>
+
+  <div class="cards-row">
+    <div class="cards">
+      <img src="images/Frame 37.png" alt="Image 1" />
+      <div class="hover-text">
+        <a href="#">For Him</a> | <a href="#">For Her</a>
+      </div>
+      <div class="caption">JACKET</div>
+    </div>
+    <div class="cards">
+      <img src="/images/Frame 38.png" alt="Image 2" />
+      <div class="hover-text">
+        <a href="#">For Him</a> | <a href="#">For Her</a>
+      </div>
+      <div class="caption">LEATHER BAGS</div>
+    </div>
+    <div class="cards">
+      <img src="/images/Frame 37.png" alt="Image 3" />
+      <div class="hover-text">
+        <a href="#">For Him</a> | <a href="#">For Her</a>
+      </div>
+      <div class="caption">BELT</div>
+    </div>
+    <div class="cards">
+      <img src="/images/Frame 40.png" alt="Image 4" />
+      <div class="hover-text">
+        <a href="#">For Him</a> | <a href="#">For Her</a>
+      </div>
+      <div class="caption">FOOTWARE</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Form</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+  <style>
+    body {
+      background-color: #a2afe4;
+      font-family: 'Arial', sans-serif;
+    }
+    .contact-card {
+      background-color: #fff;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      overflow: hidden;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .contact-left {
+      background-color: #0b2b3e;
+      color: white;
+      padding: 40px;
+      position: relative;
+    }
+    .contact-left h4 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 28px;
+    }
+    .contact-left small {
+      color: #cfd8dc;
+      font-size: 14px;
+    }
+    .contact-left .info-item {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+    .contact-left .info-item i {
+      font-size: 16px;
+      margin-right: 8px;
+    }
+    .contact-left .social-icons {
+      margin-top: 100px;
+    }
+    .contact-left .social-icons i {
+      background-color: #f1c40f;
+      color: #0b2b3e;
+      border-radius: 50%;
+      padding: 8px;
+      margin-right: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .contact-right {
+      padding: 40px;
+      flex: 1;
+    }
+    .form-control, .form-check-input {
+      border-radius: 0;
+      border: none;
+      border-bottom: 1px solid #ccc;
+      box-shadow: none;
+      font-size: 14px;
+    }
+    .form-check-input:checked {
+      background-color: #0b2b3e;
+      border-color: #0b2b3e;
+    }
+    .send-btn {
+      color: #0b2b3e;
+      font-weight: bold;
+      text-decoration: none;
+      float: right;
+      margin-top: 20px;
+    }
+
+    /* ✅ Responsive Fix */
+    @media (max-width: 768px) {
+      .contact-left, .contact-right {
+        padding: 20px;
+      }
+      .contact-left h4 {
+        font-size: 22px;
+      }
+      .contact-left small {
+        font-size: 12px;
+      }
+      .contact-left .social-icons {
+        margin-top: 50px;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .contact-card {
+        flex-direction: column;
+      }
+      .contact-left, .contact-right {
+        width: 100%;
+      }
+      .contact-left {
+        text-align: center;
+      }
+      .contact-left .info-item {
+        justify-content: center;
+        display: flex;
+      }
+      .contact-left .social-icons {
+        margin-top: 30px;
+      }
+    }
+
+    @media (max-width: 320px) {
+      .contact-left h4 {
+        font-size: 18px;
+      }
+      .contact-left small {
+        font-size: 11px;
+      }
+      .form-control {
+        font-size: 12px;
+      }
+      .send-btn {
+        font-size: 13px;
+        float: none;
+        display: block;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body class="p-2">
+
+<div class="container mt-2">
+  <div class="row contact-card">
+    <!-- Left Side -->
+    <div class="col-lg-4 contact-left ">
+      <h4>Contact Information</h4>
+      <small>Say something to start a live chat!</small>
+
+      <div class="info-item pb-4" style="margin-top: 50px;">
+        <i class="fa fa-phone"></i> +1012 3456 789
+      </div>
+      <div class="info-item pb-4">
+        <i class="fa fa-envelope"></i> demo@gmail.com
+      </div>
+      <div class="info-item pb-4">
+        <i class="fa fa-map-marker-alt"></i>
+        132 Dartmouth Street Boston, <br>Massachusetts 02156 United States
+      </div>
+      <div class="social-icons">
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-discord"></i>
+      </div>
+    </div>
+
+    <!-- Right Side -->
+    <div class="col-lg-8 contact-right">
+      <div class="row mb-3">
+        <div class="col">
+          <label class="form-label">First Name</label>
+          <input type="text" class="form-control" placeholder="Write here">
+        </div>
+        <div class="col">
+          <label class="form-label">Last Name</label>
+          <input type="text" class="form-control" placeholder="Write here">
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" value="ridoysheikh15@gmail.com">
+        </div>
+        <div class="col">
+          <label class="form-label">Phone Number</label>
+          <input type="text" class="form-control" value="+1 012 3456 789">
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Select Subject?</label>
+        <div class="d-flex flex-wrap gap-3">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="subject" checked>
+            <label class="form-check-label">General Inquiry</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="subject">
+            <label class="form-check-label">Support</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="subject">
+            <label class="form-check-label">Feedback</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="subject">
+            <label class="form-check-label">Other</label>
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Message</label>
+        <textarea class="form-control" placeholder="Write your message.." rows="2"></textarea>
+      </div>
+      <a href="#" class="send-btn">Send Message</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

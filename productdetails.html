@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bindazz E-Commerce</title>
+
+<!-- Bootstrap & Font Awesome -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;700&display=swap" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="productsdetails.css">
+<script src="productdetails.js"></script>
+
+
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbars">
+  <div class="nav-row">
+    <div class="language-currency">
+      <div class="language"><img src="https://flagcdn.com/us.svg" alt="English" class="flag" /> <span>English</span> <i class="fa-solid fa-angle-down"></i></div>
+      <div class="currency"><span>BDT</span> <i class="fa-solid fa-angle-down"></i></div>
+    </div>
+    <div class="logo-wrapper"><a class="navbar-brand" href="#"><img src="/images/Bindazz-Logo 1.png" alt="Bindazz Logo" /></a></div>
+    <div class="right-controls">
+      <div class="search-bar"><input type="text" placeholder="Search Products"><i class="fa-solid fa-magnifying-glass search-icon"></i></div>
+      <button id="navbarToggle" class="menu-icon">&#9776; MENU</button>
+    </div>
+  </div>
+
+  <!-- Hidden Nav Desktop -->
+  <div class="hidden-nav" id="hiddenNav">
+    <div class="nav-container">
+      <div class="nav-group">
+        <div class="dropdown">
+          <a href="#">NEW ARRIVAL</a>
+          <div class="dropdown-menu">
+            <a href="#">Shirts</a>
+            <div class="dropdown nested">
+              <a href="#">T-Shirts ▸</a>
+              <div class="dropdown-menu">
+                <a href="#">Round Neck</a>
+                <a href="#">V-Neck</a>
+                <a href="#">Polo</a>
+              </div>
+            </div>
+            <a href="#">Shoes</a>
+            <a href="#">Watches</a>
+            <a href="#">Bags</a>
+          </div>
+        </div>
+        <a href="#">TRENDING</a>
+        <a href="#">ONSALE</a>
+      </div>
+      <div class="nav-group">
+        <a href="#">MEN</a>
+        <a href="#">WOMEN</a>
+        <a href="#">KIDS</a>
+      </div>
+      <div class="nav-group">
+        <a href="#">CONTACT</a>
+        <a href="#">CART</a>
+        <a href="#">LOGIN</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Promo Banner -->
+  <div class="container-fluid promoBanner" id="promoBanner">
+    30% off on your first order. So add to cart now.
+  </div>
+</nav>
+
+<!-- Sidebar Mobile -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-logo-row">
+    <a href="#"><img src="/images/Bindazz-Logo 1.png" alt="Bindazz Logo"></a>
+    <button class="close-btn" id="closeSidebar">&#8594;</button>
+  </div>
+  <nav>
+    <a href="#" class="sidebar-item has-submenu"><span>NEW ARRIVAL</span><span class="arrow">&gt;</span></a>
+    <div class="submenu">
+      <a href="#" class="sidebar-item">Shirts</a>
+      <a href="#" class="sidebar-item has-submenu">T-Shirts <span class="arrow">&gt;</span></a>
+      <div class="submenu">
+        <a href="#" class="sidebar-item">Round Neck</a>
+        <a href="#" class="sidebar-item">V-Neck</a>
+        <a href="#" class="sidebar-item">Polo</a>
+      </div>
+      <a href="#" class="sidebar-item">Shoes</a>
+      <a href="#" class="sidebar-item">Watches</a>
+      <a href="#" class="sidebar-item">Bags</a>
+    </div>
+    <a href="#" class="sidebar-item">TRENDING</a>
+    <a href="#" class="sidebar-item">ONSALE</a>
+    <a href="#" class="sidebar-item">MEN</a>
+    <a href="#" class="sidebar-item">WOMEN</a>
+    <a href="#" class="sidebar-item">KIDS</a>
+    <a href="#" class="sidebar-item">CONTACT</a>
+    <a href="#" class="sidebar-item">CART</a>
+    <a href="#" class="sidebar-item">LOGIN</a>
+  </nav>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <!-- Left thumbnails -->
+    <div class="col-md-2 d-flex flex-column align-items-center">
+      <img src="/images/Rectangle 9.png" class="thumb-img active" onclick="changeImage(this)">
+      <img src="/images/Rectangle 10.png" class="thumb-img" onclick="changeImage(this)">
+      <img src="/images/Rectangle 11.png" class="thumb-img" onclick="changeImage(this)">
+      <img src="/images/Rectangle 12.png" class="thumb-img" onclick="changeImage(this)">
+      <img src="/images/Rectangle 13.png" class="thumb-img" onclick="changeImage(this)">
+
+      <!-- Extra hidden thumbnails -->
+      <div class="extra-thumbs w-100 text-center">
+        <img src="/images/Rectangle 9.png" class="thumb-img" onclick="changeImage(this)">
+        <img src="/images/Rectangle 10.png" class="thumb-img" onclick="changeImage(this)">
+        <img src="/images/Rectangle 11.png" class="thumb-img" onclick="changeImage(this)">
+      </div>
+
+      <!-- Down arrow -->
+      <div class="arrow-btn" onclick="toggleThumbs()">
+        <i class="bi bi-chevron-down"></i>
+      </div>
+    </div>
+
+    <!-- Main image -->
+    <div class="col-md-5 text-center">
+      <img id="mainImg" src="/images/Rectangle 14.png" class="product-main-img img-fluid">
+    </div>
+
+    <!-- Product details -->
+    <div class="col-md-5">
+      <h3>lorem ipsum dollor item</h3>
+     <h4 class="price-text">$1,999</h4>
+      <p class="viewing-text"><i class="bi bi-eye"></i> 3,564 people are viewing this</p>
+
+      <!-- Color -->
+      <p class="label-text">Color:</p>
+      <div class="d-flex gap-2">
+        <div class="color-option active" style="background:#cdb69d;" onclick="selectColor(this)"></div>
+        <div class="color-option" style="background:#ccc;" onclick="selectColor(this)"></div>
+        <div class="color-option" style="background:#ff69b4;" onclick="selectColor(this)"></div>
+      </div>
+
+      <!-- Size -->
+       <p class="label-text mt-3">Size:</p>
+      <div class="d-flex gap-2">
+       <button class="btn btn-light size-btn" onclick="selectSize(this)">M</button>
+       <button class="btn btn-light size-btn" onclick="selectSize(this)">L</button>
+        <button class="btn btn-light size-btn" onclick="selectSize(this)">XL</button>
+      </div>
+
+      <!-- Quantity -->
+      <p class="label-text mt-3">Quantity:</p>
+      <div class="d-flex align-items-center mb-3 gap-2">
+        <button class="btn btn-light" onclick="decreaseQuantity()">-</button>
+        <input id="quantity" type="text" class="quantity-input text-center" value="1" readonly>
+        <button class="btn btn-light" onclick="increaseQuantity()">+</button>
+      </div>
+
+      <!-- Buttons as links -->
+      <div class="d-flex gap-2 mb-2">
+        <a href="#" class="btn btn-white flex-fill cart-btn">Add to cart</a>
+       <a href="#" class="btn flex-fill buy-btn">Buy Now</a>
+      </div>
+      <div class="d-flex gap-2">
+       <a href="#" class="btn btn-outline-light flex-fill outline-btn"><i class="bi bi-heart"></i> Add to wishlist</a>
+       <a href="#" class="btn btn-outline-light flex-fill outline-btn"><i class="bi bi-share"></i> Share Now</a>
+       <a href="#" class="btn btn-outline-light flex-fill outline-btn"><i class="bi bi-clipboard"></i> Copy URL</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <ul class="nav nav-tabs mt-4" id="productTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="details-tab" data-bs-toggle="tab" data-bs-target="#details">Product Details</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="brand-tab" data-bs-toggle="tab" data-bs-target="#brand">About This Brand</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="faq-tab" data-bs-toggle="tab" data-bs-target="#faq">FAQ</button>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane fade show active" id="details">
+      <h5 class="tab-heading mt-3">This is heading</h5>
+      <p class="tab-paragraph">
+  He garments labelled as Committed are products that have been produced using sustainable fibers or processes, reducing their environmental impact...
+</p>
+    </div>
+    <div class="tab-paragraph    tab-pane fade" id="brand">
+      <p>About the brand content goes here...</p>
+    </div>
+    <div class=" tab-paragraph  tab-pane fade" id="faq">
+      <p>FAQ content goes here...</p>
+    </div>
+  </div>
+</div>
+<div class="py-5">
+    <h2 class="text-center">Related Product</h2>
+</div>
+<div class="container-fluid">
+  <div class="row g-0"> <!-- g-0 removes gaps -->
+    <div class="col-md-3">
+      <img src="/images/Frame 37.png" class="product-img">
+    </div>
+    <div class="col-md-3">
+      <img src="/images/Frame 38.png" class="product-img">
+    </div>
+    <div class="col-md-3">
+      <img src="/images/Frame 39.png" class="product-img">
+    </div>
+    <div class="col-md-3">
+      <img src="/images/Frame 40.png" class="product-img">
+    </div>
+
+    
+  </div>
+</div>
+
+
+
+
+
+<!-- Footer -->
+<footer class="mt-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <h6>COMPANY</h6>
+        <p>Find a location nearest you.<br><a href="#">See Our Stores</a></p>
+        <p>+88 (0)1987654321<br>hello@bindazz.com</p>
+      </div>
+      <div class="col-md-3">
+        <h6>INFORMATION</h6>
+        <ul class="list-unstyled">
+          <li><a href="#">My Account</a></li>
+          <li><a href="#">Login</a></li>
+          <li><a href="#">My Cart</a></li>
+          <li><a href="#">Wishlist</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h6>SERVICE</h6>
+        <ul class="list-unstyled">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Delivery Info</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms & Condition</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h6>SUBSCRIBE</h6>
+        <div class="input-group position-relative">
+          <span style="left:10px; z-index:40;" class="position-absolute"><i class="bi bi-envelope-fill text-danger fs-3"></i></span>
+          <input type="email" class="form-control subscribe-input ps-5 bg-white text-dark" placeholder="Your Email" />
+          <button class="btn btn-light">→</button>
+        </div>
+      </div>
+    </div>
+    <hr class="my-4">
+    <div class="row align-items-center text-center text-lg-start">
+      <div class="col-lg-4 mb-2 mb-lg-0">
+        <i class="fab fa-cc-visa fa-2x me-2" style="color:#1a1f71;"></i>
+        <i class="fab fa-cc-mastercard fa-2x me-2" style="color:#eb001b;"></i>
+        <i class="fab fa-cc-amex fa-2x me-2" style="color:#2e77bc;"></i>
+        <i class="fab fa-cc-discover fa-2x me-2" style="color:#ff6000;"></i>
+        <i class="fab fa-cc-paypal fa-2x" style="color:#003087;"></i>
+      </div>
+      <div class="col-lg-4 mb-2 mb-lg-0 text-center"><i class="far fa-copyright"></i> bindaz25</div>
+      <div class="col-lg-4 text-lg-end social-icons">
+        <i class="fab fa-facebook fa-2x me-2" style="color:#fff;"></i>
+        <i class="fab fa-instagram fa-2x me-2" style="color:#fff;"></i>
+        <i class="fab fa-twitter fa-2x me-2" style="color:#fff;"></i>
+        <i class="fab fa-youtube fa-2x me-2" style="color:#fff;"></i>
+        <i class="fab fa-linkedin fa-2x" style="color:#fff;"></i>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
