@@ -14,7 +14,7 @@ body{margin:0; font-family:'Inter', sans-serif; background:#f9f9f9; overflow-x:h
 
 /* Navbar */
 nav.navbars{background:#fff; padding:5px 15px; border-bottom:1px solid #ddd; position:relative; z-index:1001;}
-.nav-row{display:flex; align-items:center; justify-content:space-between; flex-wrap:nowrap;height: 50px;}
+.nav-row{display:flex; align-items:center; justify-content:space-between; flex-wrap:nowrap;height:50px ;}
 .language-currency{display:flex; align-items:center; gap:6px; font-size:14px; flex-shrink:0;}
 .language, .currency{display:flex; align-items:center; gap:4px; cursor:pointer; white-space:nowrap;}
 .language img.flag{width:16px;height:14px; object-fit:cover; border-radius:2px;}
@@ -27,15 +27,45 @@ nav.navbars{background:#fff; padding:5px 15px; border-bottom:1px solid #ddd; pos
 .menu-icon{font-size:14px; color:#333; background:none; border:none; cursor:pointer;}
 
 /* Hidden Nav Desktop */
-.hidden-navs{display:none; background:#fff; padding:10px 0; border-top:1px solid #ddd; position:absolute; top:100%; left:0; width:100%; z-index:1000;}
-.hidden-navs .nav-container{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap;}
-.hidden-navs .nav-group{display:flex; gap:20px; flex-wrap:wrap;}
-.hidden-navs a{
-    font-family: 'Merriweather', serif;
-  font-weight: 400;   
+/* Hidden Navs Desktop */
+.hidden-navs {
+  display: none; /* default hidden */
+  background: #fff;
+  padding: 10px 0;
+  border-top: 1px solid #ddd;
+  position: relative;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.hidden-navs .nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.hidden-navs .nav-group {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.hidden-navs a {
+  font-family: 'Merriweather', serif;
+  font-weight: 400;
   font-size: 16px;
-  color: #000000;; transition:color 0.3s;text-decoration: none;}
-.hidden-navs a:hover{color:#007BFF;}
+  color: #000;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.hidden-navs a:hover {
+  color: #007BFF;
+}
+
 .dropdown{position:relative; display:inline-block;}
 .dropdown-menu{display:none; position:absolute; background:#fff; min-width:160px; box-shadow:0px 4px 8px rgba(0,0,0,0.1); z-index:100; border-radius:6px;}
 .dropdown-menu a{display:block; padding:8px 12px; color:#333; text-decoration:none; white-space:nowrap;}
