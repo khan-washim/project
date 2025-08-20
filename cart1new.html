@@ -62,12 +62,77 @@ nav.navbars { background: #fff; padding: 5px 15px; border-bottom: 1px solid #ddd
 /* Step Tracker */
 .step-container { display: flex; align-items: center; justify-content: space-between; margin: 50px auto 80px; width: 60%; max-width: 600px; position: relative; }
 .step-container::before { content: ""; position: absolute; top: 20px; left: 20px; right: 20px; height: 4px; background: #ddd; z-index: 0; }
-.step { position: relative; z-index: 1; width: 40px; height: 40px; border-radius: 50%; background: #ddd; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #333; cursor: pointer; transition: 0.3s; }
+
 .step.active { background: #3b3b98; color: #fff; }
 .step-label { position: absolute; top: 55px; font-size: 14px; color: #555; text-align: center; width: 100px; left: 50%; transform: translateX(-50%); }
+/* Step Tracker */
+.step {
+  position: relative;
+  z-index: 1;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Lora', serif;
+  font-weight: 400; /* Regular */
+  font-size: 16px;
+  color: #191919;
+  cursor: pointer;
+  transition: 0.3s;
+  flex-shrink: 0;
+}
+
+.step.active {
+  background: #3b3b98;
+  color: #fff;
+}
+
+.step-label {
+  position: absolute;
+  top: 55px;
+  font-family: 'Lora', serif;
+  font-weight: 400; /* Regular */
+  font-size: 16px;
+  color: #191919;
+  text-align: center;
+  width: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .step-label {
+    font-size: 13px;
+    width: 80px;
+  }
+}
 
 /* Cart Table */
-.cart-title { color: #3b3b98; font-weight: bold; }
+.cart-title {
+  font-family: 'Lora', serif;
+  font-weight: 500; /* Medium */
+  font-size: 24px;
+  color: #2E3192;
+}
+.cart-table th {
+  font-family: 'Lora', serif;
+  font-weight: 600; /* SemiBold */
+  font-size: 16px;
+  color: #AAAAAA;
+}
+.cart-table td {
+  font-family: 'Lora', serif;
+  font-weight: 400; 
+  font-size: 16px;
+  color: #363636;
+}
+
+
+
 .cart-table th, .cart-table td { vertical-align: middle; }
 .btn-qty { width: 35px; height: 35px; padding: 0; font-size: 18px; }
 .remove-btn { color: red; font-size: 18px; cursor: pointer; }
@@ -103,7 +168,7 @@ footer ul li a:hover { text-decoration: underline; }
       <div class="currency"><span>BDT</span><i class="fa-solid fa-angle-down"></i></div>
     </div>
     <div class="logo-wrapper">
-      <a class="navbar-brand" href="#"><img src="/Bindazz-Logo 1.png" alt="Bindazz Logo" /></a>
+      <a class="navbar-brand" href="#"><img src="/images/Bindazz-Logo 1.png" alt="Bindazz Logo" /></a>
     </div>
     <div class="right-controls">
       <div class="search-bar">
@@ -170,7 +235,7 @@ footer ul li a:hover { text-decoration: underline; }
       <div class="card p-3">
         <div class="d-flex justify-content-between align-items-center">
           <h5 class="cart-title">Cart</h5>
-          <small class="text-muted">Review your cart</small>
+          
         </div>
         <hr>
         <table class="table cart-table">
@@ -212,13 +277,16 @@ footer ul li a:hover { text-decoration: underline; }
             </tr>
           </tbody>
         </table>
-        <div class="d-flex justify-content-between">
-          <strong class="text-danger" style="cursor:pointer;" id="clearCart">X Clear cart</strong>
-          <div>
-            <span>Total item: <span id="total-items">2</span></span> | 
-            <span>Total quantity: <span id="total-qty">2</span></span>
-          </div>
-        </div>
+        <div class="d-flex justify-content-between align-items-center">
+  <span style="font-family:'Lora', serif; font-weight:600; font-size:16px; color:#AAAAAA;margin-left: 280px;">
+    Total item: <span id="total-items">2</span>
+  </span>
+  <span style="font-family:'Lora', serif; font-weight:600; font-size:16px; color:#AAAAAA;">
+    Total quantity: <span id="total-qty">2</span>
+  </span>
+</div>
+
+
       </div>
     </div>
 
@@ -226,13 +294,21 @@ footer ul li a:hover { text-decoration: underline; }
       <div class="card p-3">
         <h5 class="cart-title">Cart Total</h5>
         <hr>
-        <div class="d-flex justify-content-between"><span>Subtotal</span><span id="subtotal">$3,998</span></div>
-        <div class="d-flex justify-content-between"><span>Shipping</span><span id="shipping">$100</span></div>
-        <div class="d-flex justify-content-between text-muted"><span>Coupon discount</span><span>$0</span></div>
+        <div class="d-flex justify-content-between"><span style="font-family:'Lora', serif; font-weight:600; font-size:16px; color:#AAAAAA;">
+       Subtotal
+       </span>
+      <span id="subtotal"style="font-family:'Lora', serif; font-weight:600; font-size:16px; color:#363636;">$3,998</span></div>
+        <div class="d-flex justify-content-between"><span style="font-family:'Lora', serif; font-weight:600; font-size:16px; color:#AAAAAA;">
+      Shipping
+     </span><span id="shipping"style="font-family:'Lora', serif; font-weight:600; font-size:16px; color:#363636;">$100</span></div>
+        <div class="d-flex justify-content-between text-muted"><span style="font-family:'Lora', serif; font-weight:600; font-size:16px; color:#AAAAAA;">
+      Coupon discount
+       </span><span id="discount" style="font-family:'Lora', serif; font-weight:600; font-size:16px; color:#363636;">$0</span></div>
         <hr>
-        <div class="d-flex justify-content-between fw-bold"><span>Total Payable</span><span id="total-payable">$4,098</span></div>
-        <button class="btn btn-primary w-100 mt-3">Process the checkout</button>
+        <div class="d-flex justify-content-between fw-bold"><span style="font-family:'Lora', serif; font-weight:600; font-size:16px; color:#363636;">Total Payable</span><span id="total-payable">$4,098</span></div>
+        <button class="btn  w-100 mt-3" style="font-family:'Lora', serif; font-weight:600; font-size:16px; color:#fff; background-color: #2E3192;">Process the checkout</button>
       </div>
+    </div>
     </div>
   </div>
 </div>
