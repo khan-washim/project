@@ -133,20 +133,36 @@ nav.navbars{background:#fff; padding:5px 15px; border-bottom:1px solid #ddd; pos
       left: 50%;
       transform: translateX(-50%);
     }
-    /* Cart Table */
+    .step,
+  .step .step-label {
+    font-family: 'Lora', serif;
+    font-weight: 400;      /* regular */
+    font-size: 16px;
+    color: #191919;
+  }
+h5.text-primary {
+  font-family: 'Lora', serif;
+  font-weight: 500;   /* Medium */
+  font-size: 24px;
+  color: #2E3192 !important;
+}
+
+/* Cart Table */
 .cart-title {
   font-family: 'Lora', serif;
   font-weight: 500; /* Medium */
   font-size: 24px;
   color: #2E3192;
 }
-.cart-table th {
+
+.card-table th {
   font-family: 'Lora', serif;
   font-weight: 600; /* SemiBold */
   font-size: 16px;
   color: #AAAAAA;
 }
-.cart-table td {
+
+.card-table td {
   font-family: 'Lora', serif;
   font-weight: 400; 
   font-size: 16px;
